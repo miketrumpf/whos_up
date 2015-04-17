@@ -5,9 +5,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    facebookId : {
-      type: DataTypes.Integer,
-      allowNull: false
+    facebookId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
       validate: {
         isInt: {msg: "must be an integer"}
         }
