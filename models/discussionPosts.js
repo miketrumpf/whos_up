@@ -1,6 +1,6 @@
 "use strict";
 module.exports = function(sequelize, DataTypes) {
-  var funPosts = sequelize.define("funPosts", {
+  var discussionPosts = sequelize.define("discussionPosts", {
     user_name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -42,9 +42,12 @@ module.exports = function(sequelize, DataTypes) {
 
     classMethods: {
       associate: function(models){
-
+        discussionPosts.belongsToMany(models.users, {
+          through: "discussionPosts_users",
+          foreignKey: "user_id"
+        });
       }
     }
   });
-  return funPosts
+  return discussionPosts
 };
