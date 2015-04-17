@@ -29,7 +29,7 @@ module.exports = {
         type: DataTypes.DATE,
         allowNull: false
       },
-      facebook_id: {
+      facebookId: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
@@ -45,7 +45,7 @@ module.exports = {
         type: DataTypes.DATE,
         allowNull: false
       }
-    }).done();
+    }).done(done);
   },
 
   down: function(migration, DataTypes, done) {
