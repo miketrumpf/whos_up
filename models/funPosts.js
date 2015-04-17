@@ -1,6 +1,6 @@
 "use strict";
 module.exports = function(sequelize, DataTypes) {
-  var foodPosts = sequelize.define("foodPosts", {
+  var funPosts = sequelize.define("funPosts", {
     user_name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -33,8 +33,13 @@ module.exports = function(sequelize, DataTypes) {
         isAfter: {args:["4/17/2015"], msg: "Can not be in the past"}
       }
     },
+    facebookId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     user_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   },
   {
@@ -42,9 +47,12 @@ module.exports = function(sequelize, DataTypes) {
 
     classMethods: {
       associate: function(models){
-
+        funPosts.belongsToMany(models.users, {
+          through: "funPosts_users",
+          foreignKey: "user_id"
+        });
       }
     }
   });
-  return foodPosts
+  return funPosts
 };

@@ -14,16 +14,25 @@ module.exports = function(sequelize, DataTypes) {
       },
       picture: {
         type: DataTypes.STRING,
-      },
-      friends: {
-        type: DataTypes.INTEGER
       }
     }, {
       underscored: true,
 
       classMethods: {
+        
         associate: function(models) {
-
+          users.belongsToMany(models.funPosts, {
+            through: "funPosts_users",
+            foreignKey: "funPost_id"
+          });
+          users.belongsToMany(models.foodPosts, {
+            through: "foodPosts_users",
+            foreignKey: "foodPost_id"
+          });
+          users.belongsToMany(models.discussionPosts, {
+            through:"discussionPosts_users",
+            foreignKey: "discussionPost_id"
+          });
         }
       }
     });
