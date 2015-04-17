@@ -33,8 +33,13 @@ module.exports = function(sequelize, DataTypes) {
         isAfter: {args:["4/17/2015"], msg: "Can not be in the past"}
       }
     },
+    facebook_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     user_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   },
   {

@@ -14,9 +14,6 @@ module.exports = function(sequelize, DataTypes) {
       },
       picture: {
         type: DataTypes.STRING,
-      },
-      friends: {
-        type: DataTypes.INTEGER
       }
     }, {
       underscored: true,
