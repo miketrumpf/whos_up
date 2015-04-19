@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    facebookId: {
+    facebook_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -22,16 +22,16 @@ module.exports = function(sequelize, DataTypes) {
         
         associate: function(models) {
           users.belongsToMany(models.funPosts, {
-            through: "funPosts_users",
-            foreignKey: "funPost_id"
+            through: "fun_posts_users",
+            foreignKey: "fun_post_id"
           });
           users.belongsToMany(models.foodPosts, {
-            through: "foodPosts_users",
-            foreignKey: "foodPost_id"
+            through: "food_posts_users",
+            foreignKey: "food_post_id"
           });
           users.belongsToMany(models.discussionPosts, {
-            through:"discussionPosts_users",
-            foreignKey: "discussionPost_id"
+            through:"discussion_posts_users",
+            foreignKey: "discussion_post_id"
           });
         }
       }

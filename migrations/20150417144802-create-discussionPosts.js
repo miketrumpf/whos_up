@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function(migration, DataTypes, done) {
-    migration.createTable("discussionPosts", {
+    migration.createTable("discussion_posts", {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -29,7 +29,7 @@ module.exports = {
         type: DataTypes.DATE,
         allowNull: false
       },
-      facebookId: {
+      facebook_id: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
@@ -49,6 +49,6 @@ module.exports = {
   },
 
   down: function(migration, DataTypes, done) {
-    migration.dropTable("discussionPosts").done(done);
+    migration.dropTable("discussion_posts").done(done);
   }
 };
