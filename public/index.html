@@ -14,7 +14,7 @@
   <h1> Who's up 4 What?</h1>
     <h1> This App is under construction.</h1>
 
-
+<section id="login"></section>
 <!-- facebook script -->
 <script>
 
@@ -104,19 +104,34 @@
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
-<div id="facebook-login">
-  <h3> Please log in with Facebook so you can use Who's up 4 What? to connect with your friends!</h3>
 
-  <fb:login-button scope="public_profile,email" id="login-button" onlogin="checkLoginState();">
-  </fb:login-button>
+<template id="login-template">
+
+  <div id="facebook-login">
+    <h3> Please log in with Facebook so you can use Who's up 4 What? to connect with your friends!</h3>
+
+    <fb:login-button scope="public_profile,email" id="login-button" onlogin="checkLoginState();">
+    </fb:login-button>
 
 
-  <div id="status">
+    <div id="status">
+    </div>
   </div>
-</div>
+</template>
 
+<template id="post-template">
+  <div class="post">
+    <h1>{{user_name}}</h1>
+    <p>{{title}}</p>
+    <p>{{genre}}</p>
+    <p>{{content}}</p>
+    <p>{{start_date}}</p>
+    <p>{{exp_date}}</p>
+    <input type="hidden" id ="user_id" data-lat="{{user_id}}"></input>
+    <input type="hidden" id ="facebook_id" data-long="{{facebook_id}}"></input>
 
-
+  </div>
+</template>
 
 
 
