@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function(migration, DataTypes, done) {
-    migration.createTable("discussionPosts_users", {
+    migration.createTable("discussion_posts_users", {
       discussionPost_id: {
         type: DataTypes.INTEGER
       },
@@ -21,6 +21,6 @@ module.exports = {
   },
 
   down: function(migration, DataTypes, done) {
-    migration.dropTable("discussionPosts_users").done(done);
+    migration.dropTable("discussion_posts_users").done(done);
   }
 };

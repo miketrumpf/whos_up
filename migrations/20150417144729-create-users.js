@@ -13,7 +13,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false
       },
-      facebookId: {
+      facebook_id: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
