@@ -21,15 +21,15 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
         
         associate: function(models) {
-          users.belongsToMany(models.funPosts, {
+          users.belongsToMany(models.fun_posts, {
             through: "fun_posts_users",
             foreignKey: "fun_post_id"
           });
-          users.belongsToMany(models.foodPosts, {
+          users.belongsToMany(models.food_posts, {
             through: "food_posts_users",
             foreignKey: "food_post_id"
           });
-          users.belongsToMany(models.discussionPosts, {
+          users.belongsToMany(models.discussion_posts, {
             through:"discussion_posts_users",
             foreignKey: "discussion_post_id"
           });

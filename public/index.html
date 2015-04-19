@@ -8,6 +8,19 @@
   <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+
+
+  <script src="js/app.js"></script>
+
+  <script src="js/models/user.js"></script>
+  <script src="js/models/discussion_post.js"></script>
+  <script src="js/models/food_post.js"></script>
+  <script src="js/models/fun_post.js"></script>
+  <script src="js/collections/users.js"></script>
+  <script src="js/collections/discussion_posts.js"></script>
+  <script src="js/collections/food_posts.js"></script>
+  <script src="js/collections/fun_posts.js"></script>
+
 </head>
 
 <body>
@@ -121,12 +134,12 @@
 
 <template id="post-template">
   <div class="post">
-    <h1>{{user_name}}</h1>
-    <p>{{title}}</p>
-    <p>{{genre}}</p>
-    <p>{{content}}</p>
-    <p>{{start_date}}</p>
-    <p>{{exp_date}}</p>
+    <h1 id="username">{{user_name}}</h1>
+    <p id="title">{{title}}</p>
+    <p id ="genre">{{genre}}</p>
+    <p id="content">{{content}}</p>
+    <p id="start_date">{{start_date}}</p>
+    <p id="exp_date">{{exp_date}}</p>
     <input type="hidden" id ="user_id" data-lat="{{user_id}}"></input>
     <input type="hidden" id ="facebook_id" data-long="{{facebook_id}}"></input>
 
