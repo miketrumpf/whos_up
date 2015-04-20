@@ -27,6 +27,15 @@
   <h1> Who's up 4 What?</h1>
     <h1> This App is under construction.</h1>
 
+
+<!-- <template id="navigation"> -->
+    <div id="home">
+      <button id="get-fun-posts">Up 4 Fun?</button>
+      <button id="get-food-posts">Up 4 Food?</button>
+      <button id="get-dicussion-posts">Up 4 Discussion?</button>
+    </div>
+<!-- </template> -->
+
 <section id="login"></section>
 <!-- facebook script -->
 <script>
@@ -104,7 +113,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me?fields=id,name,friends,picture', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
@@ -117,8 +126,8 @@
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
-
-<template id="login-template">
+<!-- 
+<template id="login-template"> -->
 
   <div id="facebook-login">
     <h3> Please log in with Facebook so you can use Who's up 4 What? to connect with your friends!</h3>
@@ -130,9 +139,9 @@
     <div id="status">
     </div>
   </div>
-</template>
+<!-- </template> -->
 
-<template id="post-template">
+<!-- <template id="post-template"> -->
   <div class="post">
     <h1 id="username">{{user_name}}</h1>
     <p id="title">{{title}}</p>
@@ -144,7 +153,7 @@
     <input type="hidden" id ="facebook_id" data-long="{{facebook_id}}"></input>
 
   </div>
-</template>
+<!-- </template> -->
 
 
 
