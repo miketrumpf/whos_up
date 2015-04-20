@@ -5,7 +5,7 @@ App.Views.UserView = Backbone.View.extend({
     console.log("user view created")
     // this.listenTo("this.model", "change", this.saveUser());
     // // this.listenTo("this.model", "reset", this.saveUser());
-    // this.listenTo("this.model", "add", this.saveUser());
+    this.listenTo("this.model", "change", this.saveUser());
   },
 
   saveUser: function() {

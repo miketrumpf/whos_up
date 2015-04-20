@@ -32,9 +32,12 @@ app.get("/users", function (req, res) {
 });
 //Create user
 app.post("/users", function (req, res) {
+  debugger
   var user = req.body;
-  User.create(user)
-    .then(function(newUser) {
+
+  User
+  .create(user)
+    .then(function(newUser) {    
       res.send(newUser)
     });
 });

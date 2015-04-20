@@ -120,13 +120,14 @@
 
   };
 
-//create new user model and collection
+//create new user model and add to collection
   function onLogin(response) {
-    var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
-    
-    App.user = new App.Models.User(newUser);
-    var userModel = App.user;
-    App.users.add(userModel);
+    // var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
+    //setting the model successfully.  Listener not picking up on it.
+    App.user.set({name: response.name, facebook_id: response.id, picture: response.picture.data.url});
+    debugger
+    // var userModel = App.user;
+    // App.users.add(userModel);
 
   };
 
