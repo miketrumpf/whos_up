@@ -17,8 +17,8 @@ app.use(bodyParser());
 app.use(express.static(__dirname + "/public"));
 
 
-//Crate user
-app.post({"/users", function (req, res)})
+//Create user
+// app.post({"/users", function (req, res)})
 
 
 

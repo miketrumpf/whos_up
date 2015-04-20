@@ -4,5 +4,53 @@
 }
 
 body {
-  background-color: cornflowerblue
+  background: grey;
+  color: black;
+  position: center;
+  text-align: center;
+  font-family: Lucida;
+
 }
+
+button {
+  height: 75px;
+  width: 125px;
+  margin-left: 33%px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px #888888;
+  font-family: Lucida;
+}
+
+button:hover {
+  border: none;
+  background-color: #999999;
+  color: #000000; 
+  -webkit-transition: color .5s linear, background-color .5s ease-in-out, border-color .5s ease-in-out;
+  -moz-transition: color .5s linear, background-color .5s ease-in-out, border-color .5s ease-in-out;
+  -o-transition: color .5s linear, background-color .5s ease-in-out, border-color .5s ease-in-out;
+  transition: color .5s linear, background-color .5s ease-in-out, border-color .5s ease-in-out;
+}
+
+#post-template {
+  display: block;
+  margin: 10px auto;
+  height: 200px;
+  width: 600px;
+  color: black;
+  background: whitesmoke;
+  border-radius: 30px;
+}
+
+#post-template #username {
+  text-align: left;
+  width: 30%;
+  border: 1px solid black;
+}
+
+#post-template #title {
+  
+}
+
+
+
