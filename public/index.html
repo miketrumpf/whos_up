@@ -20,6 +20,11 @@
   <script src="js/collections/discussion_posts.js"></script>
   <script src="js/collections/food_posts.js"></script>
   <script src="js/collections/fun_posts.js"></script>
+  <script src="js/views/navigationView.js"></script>
+  <script src="js/views/facebookLoginView.js"></script>
+  <script src="js/views/userView.js"></script>
+  <script src="js/views/usersView.js"></script>
+
 
 </head>
 
@@ -27,16 +32,7 @@
   <h1> Who's up 4 What?</h1>
     <h1> This App is under construction.</h1>
 
-
-<!-- <template id="navigation"> -->
-    <div id="home">
-      <button id="get-fun-posts">Up 4 Fun?</button>
-      <button id="get-food-posts">Up 4 Food?</button>
-      <button id="get-dicussion-posts">Up 4 Discussion?</button>
-    </div>
-<!-- </template> -->
-
-<section id="login"></section>
+<section id="facebook-login">
 <!-- facebook script -->
 <script>
 
@@ -114,32 +110,54 @@
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me?fields=id,name,friends,picture', function(response) {
-      console.log('Successful login for: ' + response.name);
+      console.log('Successful login for: ' + response.name + response.id + response.picture.data.url);
+      var response = response;
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+    
+        onLogin(response);
     });
-  }
+
+  };
+
+//create new user model and collection
+  function onLogin(response) {
+    var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
+    
+    App.user = new App.Models.User(newUser);
+    var userModel = App.user;
+    App.users.add(userModel);
+
+  };
+
+
 </script>
+</section>
 
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
-<!-- 
-<template id="login-template"> -->
+  <!-- <template id="facebook-login-template"> -->
+   <div id="facebook-login">
+      <h3> Please log in with Facebook so you can use Who's up 4 What? to connect with your friends!</h3>
+      <div id="login-button">
+        <fb:login-button id="fb-button" scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+      </div>
 
-  <div id="facebook-login">
-    <h3> Please log in with Facebook so you can use Who's up 4 What? to connect with your friends!</h3>
-
-    <fb:login-button scope="public_profile,email" id="login-button" onlogin="checkLoginState();">
-    </fb:login-button>
-
-
-    <div id="status">
+      <div id="status">
+      </div>
     </div>
-  </div>
-<!-- </template> -->
+ <!--  </template> -->
+
+<section id="nav"></section>
+
+<template id="navigation">
+
+
+    <div id="home">
+      <button id="get-fun-posts">Up 4 Fun?</button>
+      <button id="get-food-posts">Up 4 Food?</button>
+      <button id="get-dicussion-posts">Up 4 Discussion?</button>
+    </div>
+</template>
 
 <!-- <template id="post-template"> -->
   <div class="post">
@@ -154,6 +172,7 @@
 
   </div>
 <!-- </template> -->
+
 
 
 

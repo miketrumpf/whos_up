@@ -1,0 +1,15 @@
+App.Views.UsersView = Backbone.View.extend({
+  className: "user",
+
+  initialize: function() {
+    //not doing anything
+    console.log("users view created")
+    this.listenTo(this.collection, "add", this.saveUser);
+    this.listenTo(this.collection, "change", this.saveUser);
+  },
+
+   saveUser: function() {
+    console.log("REACHED SAVE USER FUNCTION")
+    debugger
+  }
+})
