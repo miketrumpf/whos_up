@@ -122,12 +122,15 @@
 
 //create new user model and add to collection
   function onLogin(response) {
-    // var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
+    var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
     //setting the model successfully.  Listener not picking up on it.
-    App.user.set({name: response.name, facebook_id: response.id, picture: response.picture.data.url});
+    // App.user.set({name: response.name, facebook_id: response.id, picture: response.picture.data.url});
     debugger
-    // var userModel = App.user;
-    // App.users.add(userModel);
+    App.user = new App.Models.User(newUser)
+
+    var userModel = App.user;
+    debugger
+    App.users.add(userModel);
 
   };
 
@@ -137,7 +140,7 @@
 
   <!-- <template id="facebook-login-template"> -->
    <div id="facebook-login">
-      <h3> Please log in with Facebook so you can use Who's up 4 What? to connect with your friends!</h3>
+      <h3> Please log in with Facebook so you can connect with your friends and see  Who's up 4 What?!</h3>
       <div id="login-button">
         <fb:login-button id="fb-button" scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
@@ -173,6 +176,15 @@
 
   </div>
 <!-- </template> -->
+
+<template id="create-post">
+  <input type="text" id="title" placeholder="Post Title"></input>
+  <input type="text" id="genre" placeholder="Genre/Topic"></input>
+  <input tpye="text" id='content' placeholder="Message/content"></input>
+  <p>Start Date <input type="date" name="start_date"></p>
+  <p>Expiration Date <input type="date" name="end_date"></p>
+</template>
+
 
 
 
