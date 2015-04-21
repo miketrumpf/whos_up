@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git"
-    // "url": "https://github.com/miketrumpf/whos_up.git"
+    "url": "https://github.com/miketrumpf/whos_up.git"
   },
   "author": "",
   "license": "ISC",
-  // "bugs": {
-  //   // "url": "https://github.com/miketrumpf/whos_up/issues"
-  // },
-  // "homepage": "https://github.com/miketrumpf/whos_up",
+  "bugs": {
+    "url": "https://github.com/miketrumpf/whos_up/issues"
+  },
+  "homepage": "https://github.com/miketrumpf/whos_up",
   "dependencies": {
     "bcrypt": "^0.8.2",
     "body-parser": "^1.12.3",
