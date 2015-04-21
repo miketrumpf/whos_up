@@ -30,15 +30,27 @@ app.get("/users", function (req, res) {
       res.send(users)
     })
 });
-//Create user. route not being reached
+//Create user 
 app.post("/users", function (req, res) {
-  debugger
   var user = req.body;
 
   User
   .create(user)
     .then(function(newUser) {    
       res.send(newUser)
+    });
+});
+
+//
+app.get("/check_for_user", function (req, res) {
+  var facebook_id = req.facebook_id;
+  User
+    .findOne({
+      where: {facebook_id: facebook_id}
+    })
+    .then(function(user) {
+      console.log(user)
+      res.send(user)
     });
 });
 

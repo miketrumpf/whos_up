@@ -16,7 +16,7 @@ App.Views.UsersView = Backbone.View.extend({
     // //app.user has the info I need already.  Do I need to pass it anything?
     // App.user = new App.Models.User
 
-    App.user.save()
+    App.user.save({})
     
 
   }

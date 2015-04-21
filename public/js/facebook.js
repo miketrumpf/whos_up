@@ -88,17 +88,29 @@
 
 //create new user model and add to collection
   function onLogin(response) {
+   //if user exists in db don't do this. else just get friends
+   //hit a route in my server to check for facebook id in database?
+
+   var facebook_id = response.id
+   
+   $.get("/check_for_user", {
+    facebook_id: facebook_id
+   }).done().fail(addUser)
+  };   
+    
+
+  function addUser() {
     var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
     //setting the model successfully.  Listener not picking up on it.
     // App.user.set({name: response.name, facebook_id: response.id, picture: response.picture.data.url});
-    
+    debugger
     App.user = new App.Models.User(newUser)
 
     var userModel = App.user;
     
     App.users.add(userModel);
-
   };
+ 
 
 
 // </script>
