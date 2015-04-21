@@ -5,7 +5,11 @@ var bodyParser = require("body-parser");
 var request    = require("request");
 var models     = require("./models");
 
-
+//Models
+var User            = models.users;
+var FoodPost       = models.foodPosts;
+var FunPost        = models.funPosts;
+var DiscussionPost = models.discussionPosts;
 
 //Express
 var app = express();
@@ -17,9 +21,64 @@ app.use(bodyParser());
 app.use(express.static(__dirname + "/public"));
 
 
-//Crate user
-app.post({"/users", function (req, res)})
+//users
 
+app.get("/users", function (req, res) {
+  User 
+    .findAll()
+    .then(function(users) {
+      res.send(users)
+    })
+});
+//Create user 
+app.post("/users", function (req, res) {
+  var user = req.body;
+
+  User
+  .create(user)
+    .then(function(newUser) {    
+      res.send(newUser)
+    });
+});
+
+//
+app.get("/check_for_user", function (req, res) {
+  var facebook_id = req.facebook_id;
+  User
+    .findOne({
+      where: {facebook_id: facebook_id}
+    })
+    .then(function(user) {
+      console.log(user)
+      res.send(user)
+    });
+});
+
+//Fun Post Routes
+//create fun post
+app.post("/fun_posts", function (req, res) {
+  var user_name = req.user_name;
+  var title = req.title;
+  var genre = req.genre;
+  var content =req.content;
+  var start_date= req.start_date;
+  var exp_date = req.exp_date;
+  var facebook_id = req.facebook_id;
+  var user_id = req.user_id;
+
+  FunPost.create({
+    title: title,
+    genre: genre,
+    content: content,
+    start_date: start_date,
+    exp_date: exp_date,
+    facebook_id: facebook_id,
+    user_id: user_id
+  })
+    .then(function(newPost) {
+      res.send(newPost)
+    })
+});
 
 
 app.listen(3000, function() {

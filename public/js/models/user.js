@@ -3,6 +3,6 @@ App.Models.User = Backbone.Model.extend({
     console.log("User model created")
   },
 
-  url:"/user"
+  url:"/users"
 
 });
