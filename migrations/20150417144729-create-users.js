@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false
       },
       facebook_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
       },
       picture: {

@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     facebook_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false
     },
     user_id: {

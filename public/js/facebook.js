@@ -91,11 +91,11 @@
     var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
     //setting the model successfully.  Listener not picking up on it.
     // App.user.set({name: response.name, facebook_id: response.id, picture: response.picture.data.url});
-    debugger
+    
     App.user = new App.Models.User(newUser)
 
     var userModel = App.user;
-    debugger
+    
     App.users.add(userModel);
 
   };
