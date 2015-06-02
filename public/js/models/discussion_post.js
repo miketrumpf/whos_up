@@ -3,6 +3,6 @@ App.Models.Discussion_post = Backbone.Model.extend({
     console.log("dicusson post model created")
   },
 
-  url: "/discussion_post"
+  url: "/discussion_posts"
 
 });

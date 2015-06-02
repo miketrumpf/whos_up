@@ -7,6 +7,6 @@ App.Collections.Fun_posts = Backbone.Collection.extend({
 
   url: "/fun_posts",
 
-  model: App.Models.Fun_posts
+  model: App.Models.Fun_post
 
 });

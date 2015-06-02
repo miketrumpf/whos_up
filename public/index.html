@@ -3,14 +3,18 @@
 <head>
   <title>Up4What?!</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
   <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-
-
+ <!-- Bootstrap -->
+<!--     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
   <script src="js/app.js"></script>
+
+  
 
   <script src="js/models/user.js"></script>
   <script src="js/models/discussion_post.js"></script>
@@ -21,60 +25,113 @@
   <script src="js/collections/food_posts.js"></script>
   <script src="js/collections/fun_posts.js"></script>
   <script src="js/views/navigationView.js"></script>
+  <script src="js/views/facebookLoginView.js"></script>
   <script src="js/views/userView.js"></script>
   <script src="js/views/usersView.js"></script>
+  <script src="js/views/discussion_postsView.js"></script>
+  <script src="js/views/discussion_postView.js"></script>
+  <script src="js/views/food_postView.js"></script>
+  <script src="js/views/food_postsView.js"></script>
+  <script src="js/views/fun_postView.js"></script>
+  <script src="js/views/fun_postsView.js"></script>
+  <script src="js/views/personalPostView.js"></script>
+   <!-- <script src="js/views/ModalPostsView.js"></script> -->
+  <script src="js/views/ModalPostView.js"></script>
+
   <script src="js/facebook.js"></script>
+
 
 </head>
 
 <body>
+  <div id="heading">
   <h1> Who's up 4 What?</h1>
-    <h1> This App is under construction.</h1>
-
-
-
-
-  <div id="facebook-login">
-    <h3> Please log in with Facebook so you can use Who's up 4 What? to connect with your friends!</h3>
-
-    <fb:login-button scope="public_profile,email" id="login-button" onlogin="checkLoginState();">
-    </fb:login-button>
-
-
-    <div id="status">
-    </div>
+    <h3> The Easy way to connect with Friends in your network</h3>
   </div>
 
+   <div id="facebook-login">
+      <h3> Please log in with Facebook so you can connect with your friends and see </h3>
+      <h3> Who's up 4 What?!</h3>
+      <div id="login-button">
+        <fb:login-button id="fb-button" scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+      </div>
 
-<!-- <template id="navigation"> -->
-    <div id="home">
-      <button id="get-fun-posts">Up 4 Fun?</button>
-      <button id="get-food-posts">Up 4 Food?</button>
-      <button id="get-dicussion-posts">Up 4 Discussion?</button>
+      <div id="status">
+      </div>
     </div>
-<!-- </template> -->
 
 
 
-<!-- <template id="post-template"> -->
+<section id="nav"></section>
+
+<div id="posts-container">
+<section id="posts"></section>
+<section id="modal"></section>
+</div>
+
+
+
+<template id="navigation">
+
+    <div id="home">
+
+      <h2>See what your friends are up to!</h2>
+      <button id="get-fun-posts">Who's Up 4 Fun?</button>
+      <button id="get-food-posts">Who's Up 4 Food?</button>
+      <button id="get-discussion-posts">What's Up 4 Discussion?</button>
+    </div>
+
+</template>
+
+    <div id="make-posts">
+      <h3>Up for something and looking for friends to join you?</h3>
+      <button id="create-new-post">Make A Post!</button>
+
+
+
+<template id="post-template">
   <div class="post">
     <h1 id="username">{{user_name}}</h1>
-    <p id="title">{{title}}</p>
-    <p id ="genre">{{genre}}</p>
-    <p id="content">{{content}}</p>
-    <p id="start_date">{{start_date}}</p>
-    <p id="exp_date">{{exp_date}}</p>
+   <div id="title">
+    <p>Title: {{title}}</p>
+   </div>
+   <div id="img">
+    <img src="{{picture}}">
+   </div>
+   <div id="genre">
+    <p>Genre: {{genre}}</p>
+   </div> 
+   <div id="content">
+    <p>{{content}}</p>
+   </div>
+    <p id="start_date">Start Date: {{start_date}}</p>
+    <p id="exp_date">Post expires: {{exp_date}}</p>
+    <button id="join">Join In!</button>
+    <button id="attending">See who is already up!</button>
+
     <input type="hidden" id ="user_id" data-lat="{{user_id}}"></input>
     <input type="hidden" id ="facebook_id" data-long="{{facebook_id}}"></input>
 
   </div>
+</template>
+
+<template id="modal-post-template">  
+  <h2 id="username">{{name}} is up for this!</h2>
+  <div id="close-modal">X</div>
+</template>
 
 <template id="create-post">
-  <input type="text" id="title" placeholder="Post Title"></input>
-  <input type="text" id="genre" placeholder="Genre/Topic"></input>
-  <input tpye="text" id='content' placeholder="Message/content"></input>
-  <p>Start Date <input type="date" name="start_date"></p>
-  <p>Expiration Date <input type="date" name="end_date"></p>
+  <div id="create-post">
+    <h4>Create Post below</h4>
+  <input type="text" id="create-type" placeholder="Fun/Food/Discussion"></input>
+  <input type="text" id="create-title" placeholder="Post Title"></input>
+  <input type="text" id="create-genre" placeholder="Genre/Topic"></input>
+  <input tpye="text" id='create-content' placeholder="Message/content"></input>
+  <p>Start Date <input type="date" id="create-start-date" name="start_date"></p>
+  <p>Expiration Date <input type="date" id="create-exp-date" name="end_date"></p>
+  <button id="submit-post">Submit post</button>
+  <button id="back">Back</button>
 </template>
 
 

@@ -1,86 +1,56 @@
-var express    = require("express");
-var path       = require("path");
-var logger     = require("morgan");
-var bodyParser = require("body-parser");
-var request    = require("request");
-var models     = require("./models");
-
-//Models
-var User            = models.users;
-var FoodPost       = models.foodPosts;
-var FunPost        = models.funPosts;
-var DiscussionPost = models.discussionPosts;
+var express                = require("express");
+var path                   = require("path");
+var morgan                 = require("morgan");
+var bodyParser             = require("body-parser");
+var request                = require("request");
+var session                = require("express-session");
+var bcrypt                 = require("bcrypt");
+var userRouter             = require("./routers/user_router.js");
+var fun_postRouter         = require("./routers/fun_post_router.js");
+var discussion_postRouter  = require("./routers/discussion_post_router.js");
+var food_postRouter        = require("./routers/food_post_router.js");
 
 //Express
 var app = express();
 
 
 //middleware
-app.use(logger("dev"));
-app.use(bodyParser());
-app.use(express.static(__dirname + "/public"));
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
-//users
+app.use('/users', userRouter);
+app.use('/fun_posts', fun_postRouter);
+app.use('/discussion_posts', discussion_postRouter);
+app.use("/food_posts", food_postRouter);
 
-app.get("/users", function (req, res) {
-  User 
-    .findAll()
-    .then(function(users) {
-      res.send(users)
-    })
-});
-//Create user 
-app.post("/users", function (req, res) {
-  var user = req.body;
+// var restrictAccess = function(req, res, next) {
+//   var sessionID = parseInt(req.session.currentUser);
+//   var reqID     = parseInt(req.params.id);
 
-  User
-  .create(user)
-    .then(function(newUser) {    
-      res.send(newUser)
-    });
-});
+//   sessionID === reqID ? next() : res.status(401).send({err: 401, msg: "No dice bro"});
+// };
 
-//
-app.get("/check_for_user", function (req, res) {
-  var facebook_id = req.facebook_id;
-  User
-    .findOne({
-      where: {facebook_id: facebook_id}
-    })
-    .then(function(user) {
-      console.log(user)
-      res.send(user)
-    });
-});
-
-//Fun Post Routes
-//create fun post
-app.post("/fun_posts", function (req, res) {
-  var user_name = req.user_name;
-  var title = req.title;
-  var genre = req.genre;
-  var content =req.content;
-  var start_date= req.start_date;
-  var exp_date = req.exp_date;
-  var facebook_id = req.facebook_id;
-  var user_id = req.user_id;
-
-  FunPost.create({
-    title: title,
-    genre: genre,
-    content: content,
-    start_date: start_date,
-    exp_date: exp_date,
-    facebook_id: facebook_id,
-    user_id: user_id
-  })
-    .then(function(newPost) {
-      res.send(newPost)
-    })
-});
+// var authenticate = function(req, res, next) {
+//   req.session.currentUser ? next() : res.stat(400).send({err:400, msg: "Login troll"});
+// }
 
 
-app.listen(3000, function() {
+// app.get("/check_for_user", function (req, res) {
+//   var facebook_id = req.body.facebook_id;
+//   User
+//     .findOne({
+//       where: {facebook_id: facebook_id}
+//     })
+//     .then(function(user) {
+//       console.log(user)
+//       res.send(user)
+//     });
+// });
+
+app.use(express.static("./public"))
+
+app.listen(process.env.PORT || 3000, function() {
   console.log("running on port 3000")
 });

@@ -1,6 +1,6 @@
 "use strict";
 module.exports = function(sequelize, DataTypes) {
-  var funPosts = sequelize.define("fun_posts", {
+  var fun_posts = sequelize.define("fun_posts", {
     user_name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -37,22 +37,21 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
+    picture: {
+        type: DataTypes.STRING
+      }
   },
   {
     underscored: true,
 
     classMethods: {
       associate: function(models){
-        funPosts.belongsToMany(models.users, {
-          through: "fun_posts_users",
-          foreignKey: "user_id"
+        fun_posts.belongsToMany(models.users, {
+          through: "funPosts_users",
+          foreignKey: "fun_post_id"
         });
       }
     }
   });
-  return funPosts
+  return fun_posts
 };

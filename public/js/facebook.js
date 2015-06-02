@@ -1,3 +1,7 @@
+// <section id="facebook-login">
+// <!-- facebook script -->
+// <script>
+
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -33,7 +37,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '101181323546481',
+    appId      : '101181323546481',  //should not display this. 
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -72,6 +76,7 @@
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me?fields=id,name,friends,picture', function(response) {
+      
       console.log('Successful login for: ' + response.name + response.id + response.picture.data.url);
       var response = response;
       document.getElementById('status').innerHTML =
@@ -88,21 +93,34 @@
    //hit a route in my server to check for facebook id in database?
 
    var facebook_id = response.id
+    var currentUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
+
+    App.user = new App.Models.User(currentUser);
    
    $.get("/check_for_user", {
     facebook_id: facebook_id
-   }).done().fail(addUser)
+   }).done().fail(addUser(response))
   };   
     
 
-  function addUser() {
-    var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
+
+  function addUser(response) {
+    // var newUser = ({name: response.name, facebook_id: response.id, picture: response.picture.data.url}); 
     //setting the model successfully.  Listener not picking up on it.
-    // App.user.set({name: response.name, facebook_id: response.id, picture: response.picture.data.url});
-    debugger
-    App.user = new App.Models.User(newUser)
+    App.user.set({name: response.name, facebook_id: response.id, picture: response.picture.data.url});
+
+    // App.user.set({name: "Jon Eng", facebook_id: "789761835", picture: "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xfp1/t31.0-8/337478_3806830812877_1194328401_o.jpg"})
+
+    // App.user.set({name: "Sara Morais", facebook_id: "857203049", picture: "https://scontent-lax.xx.fbcdn.net/hphotos-xpf1/t31.0-8/10984583_10152602835091916_8658174614227716857_o.jpg"})
+
+    // App.user.set({name: "Pikachu", facebook_id: "000000025", picture: "http://www.nintendojo.com/wp-content/uploads/2011/03/pikachu_and_beer_by_krow000666-393x360.jpg"})
+
+    // App.user.set({name: "Kanye West", facebook_id: "1", picture: "http://25.media.tumblr.com/tumblr_m6cb9lkGUh1rwvio4o4_400.png"})
+
+    // App.user.set({name: "Jeets", facebook_id: "000000002", picture: "http://4f6gc244mzks22o21f4takq2.wpengine.netdna-cdn.com/wp-content/uploads/2014/03/DerekJeter_Cover.jpg"})
 
     var userModel = App.user;
     
     App.users.add(userModel);
   };
+ 

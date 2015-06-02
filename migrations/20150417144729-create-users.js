@@ -6,7 +6,7 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: false,
         type: DataTypes.INTEGER
       },
       name: {
@@ -15,7 +15,9 @@ module.exports = {
       },
       facebook_id: {
         type: DataTypes.STRING,
-        allowNull: false
+        primaryKey: true,
+        allowNull: false,
+        unique: true
       },
       picture: {
         type: DataTypes.STRING

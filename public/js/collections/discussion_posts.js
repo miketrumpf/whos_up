@@ -1,7 +1,7 @@
 App.Collections.Discussion_posts = Backbone.Collection.extend({
 
   initialize: function() {
-    console.log("Discussion posts");
+    console.log("Discussion posts collection create");
 
   },
 
