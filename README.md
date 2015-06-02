@@ -1,10 +1,9 @@
 # whos_up
 Who's up 4 What is my second project for General Assembly's Web Development Immersive course.  
 
-This app has not been launched yet so users will not be able to login using their facebook accounts.
+This app has not been launched yet so users will not be able to login using their Facebook accounts.
 
-Who's Up 4 What is a social network that allows users to organize with their friends in a clear and direct way.  
-Facebook is great, but the cat-memes have gotten out of control and the possibility of a "who's up for food post?" being noticed these days is slim.
+Who's Up 4 What is a social network that allows users to organize with their friends in a clear and direct way.  Facebook is great, but the cat-memes have gotten out of control and the possibility of a "who's up for food post?" being noticed these days is slim.
 
 Sections
 
